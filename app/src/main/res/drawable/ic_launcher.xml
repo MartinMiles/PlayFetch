@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Legacy launcher and in-app brand mark. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#111B3A"
+        android:pathData="M24,6h60a18,18 0,0 1,18 18v60a18,18 0,0 1,-18 18H24A18,18 0,0 1,6 84V24A18,18 0,0 1,24 6z" />
+    <path
+        android:fillColor="#24386F"
+        android:pathData="M54,22a32,32 0,1 1,0 64a32,32 0,1 1,0 -64z" />
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M27,54a27,27 0,1 0,54 0a27,27 0,1 0,-54 0"
+        android:strokeColor="#41E2C1"
+        android:strokeLineCap="round"
+        android:strokeWidth="4.5" />
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M31,42C43,47 65,47 77,42M31,66C43,61 65,61 77,66"
+        android:strokeColor="#41E2C1"
+        android:strokeLineCap="round"
+        android:strokeWidth="3" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M50,31h8v24h9L54,69L41,55h9z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M36,70h7v5h22v-5h7v8a4,4 0,0 1,-4 4H40a4,4 0,0 1,-4 -4z" />
+    <path
+        android:fillColor="#7A8FFF"
+        android:pathData="M81,25a4,4 0,1 1,0 8a4,4 0,1 1,0 -8z" />
+</vector>

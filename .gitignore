@@ -1,0 +1,30 @@
+# Android and Gradle
+.gradle/
+.kotlin/
+**/build/
+local.properties
+*.iml
+.idea/
+
+# Signing material and local configuration
+*.jks
+*.keystore
+keystore.properties
+.env
+.env.*
+!.env.example
+
+# Local artifacts and test captures
+/*.apk
+/*.apks
+/*.aab
+/*.png
+/build-check-*.xml
+/captures/
+/.research-*/
+
+# Operating systems and editors
+.DS_Store
+Thumbs.db
+*.swp
+*.swo

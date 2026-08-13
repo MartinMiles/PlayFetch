@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108" role="img" aria-labelledby="title desc">
+  <title id="title">PlayFetch icon</title>
+  <desc id="desc">A download arrow entering a package tray over a market globe.</desc>
+  <rect x="6" y="6" width="96" height="96" rx="18" fill="#111b3a"/>
+  <circle cx="54" cy="54" r="32" fill="#24386f"/>
+  <circle cx="54" cy="54" r="27" fill="none" stroke="#41e2c1" stroke-linecap="round" stroke-width="4.5"/>
+  <path d="M31 42c12 5 34 5 46 0M31 66c12-5 34-5 46 0" fill="none" stroke="#41e2c1" stroke-linecap="round" stroke-width="3"/>
+  <path d="M50 31h8v24h9L54 69 41 55h9zM36 70h7v5h22v-5h7v8a4 4 0 0 1-4 4H40a4 4 0 0 1-4-4z" fill="#fff"/>
+  <circle cx="81" cy="29" r="4" fill="#7a8fff"/>
+</svg>

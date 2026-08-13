@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PlayFetch</string>
+    <string name="hero_title">Download from Google Play</string>
+    <string name="hero_subtitle">Fetch an original signed package for a selected Play market, with a verified fallback when Google refuses anonymous delivery.</string>
+    <string name="play_url_label">Google Play URL or package name</string>
+    <string name="paste">Paste</string>
+    <string name="market_region">Play market region</string>
+    <string name="download">Download original package</string>
+    <string name="delete_file">Delete file</string>
+    <string name="file_deleted">Deleted %1$s from Download.</string>
+    <string name="delete_failed">Could not delete %1$s.</string>
+    <string name="downloaded_file_missing">%1$s is no longer in Download.</string>
+    <string name="share_telegram">Share downloaded package to Telegram</string>
+    <string name="share_package">Share downloaded package</string>
+    <string name="share_unavailable">No app is available to share this package.</string>
+    <string name="ready">Ready. Free apps only.</string>
+    <string name="integrity_note_title">Original signatures stay intact</string>
+    <string name="integrity_note">Google-delivered files are checked against Play&#8217;s digest. Mirror fallbacks must pass full APK signature verification and match available Play or catalog signer metadata. Packages are never merged or re-signed.</string>
+    <string name="download_channel_name">Package downloads</string>
+    <string name="download_channel_description">Progress for packages fetched from Google Play</string>
+    <string name="download_starting">Starting download&#8230;</string>
+    <string name="storage_permission_needed">Storage access is needed on Android 8 and 9 to save into Download.</string>
+    <string name="clipboard_empty">The clipboard does not contain text.</string>
+    <string name="invalid_url">Enter a valid Google Play app URL or Android package name.</string>
+    <string name="version_label">Version %1$s · build %2$d</string>
+</resources>

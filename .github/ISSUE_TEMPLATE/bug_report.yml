@@ -1,0 +1,53 @@
+name: Bug report
+description: Report a reproducible PlayFetch problem
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for helping improve PlayFetch. Do not attach third-party APKs, tokens, account data, or signing keys.
+  - type: input
+    id: version
+    attributes:
+      label: PlayFetch version and build
+      placeholder: "1.2.0 · build 1780000000"
+    validations:
+      required: true
+  - type: input
+    id: android
+    attributes:
+      label: Android version and device
+      placeholder: Android 16, Pixel 9
+    validations:
+      required: true
+  - type: input
+    id: package
+    attributes:
+      label: Play package or URL
+      description: Omit this only if sharing it would disclose private testing access.
+  - type: input
+    id: market
+    attributes:
+      label: Selected market
+      placeholder: United Kingdom (GB)
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: Describe the smallest repeatable sequence.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Expected and actual result
+      placeholder: Include the exact error message shown by PlayFetch.
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Safety check
+      options:
+        - label: I removed account data, tokens, APK files, and other sensitive information.
+          required: true

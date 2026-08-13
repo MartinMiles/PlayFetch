@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/MartinMiles/PlayFetch/security/advisories/new
+    about: Report security issues privately.
+  - name: Support guidance
+    url: https://github.com/MartinMiles/PlayFetch/blob/main/SUPPORT.md
+    about: Read what diagnostic information is safe and useful to share.

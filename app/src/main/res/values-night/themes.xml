@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.PlayFetch" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/brand_primary_dark</item>
+        <item name="colorSecondary">@color/brand_secondary</item>
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">@color/surface_dark</item>
+        <item name="android:windowActionModeOverlay">true</item>
+    </style>
+</resources>

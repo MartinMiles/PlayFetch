@@ -1,0 +1,108 @@
+name: Android release
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag matching the app version, for example v1.2.0
+        required: true
+        type: string
+      prerelease:
+        description: Mark the GitHub release as a prerelease
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+  id-token: write
+  attestations: write
+
+concurrency:
+  group: android-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Build signed release
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment: release
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@9c971963bec38e04b3d30dcc455b5382be2fdbfb # v6.3.0
+
+      - name: Validate version and signing secrets
+        shell: bash
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+          SIGNING_KEY_BASE64: ${{ secrets.ANDROID_SIGNING_KEY_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          app_version=$(sed -n 's/.*versionName = "\([^"]*\)".*/\1/p' app/build.gradle.kts)
+          test "$RELEASE_TAG" = "v$app_version" || {
+            echo "Tag $RELEASE_TAG does not match app version v$app_version" >&2
+            exit 1
+          }
+          for value in "$SIGNING_KEY_BASE64" "$KEYSTORE_PASSWORD" "$KEY_ALIAS" "$KEY_PASSWORD"; do
+            test -n "$value" || {
+              echo "One or more Android signing secrets are missing" >&2
+              exit 1
+            }
+          done
+          printf '%s' "$SIGNING_KEY_BASE64" | base64 --decode > "$RUNNER_TEMP/playfetch-release.jks"
+
+      - name: Test, lint, and assemble signed release
+        env:
+          PLAYFETCH_KEYSTORE_PATH: ${{ runner.temp }}/playfetch-release.jks
+          PLAYFETCH_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          PLAYFETCH_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          PLAYFETCH_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: ./gradlew --no-daemon testDebugUnitTest lintRelease assembleRelease
+
+      - name: Prepare release files
+        shell: bash
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+        run: |
+          set -euo pipefail
+          version=${RELEASE_TAG#v}
+          install -Dm644 app/build/outputs/apk/release/app-release.apk "dist/PlayFetch-$version.apk"
+          sha256sum "dist/PlayFetch-$version.apk" > "dist/PlayFetch-$version.apk.sha256"
+
+      - name: Attest release provenance
+        uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
+        with:
+          subject-path: dist/PlayFetch-*.apk
+
+      - name: Publish GitHub release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.tag }}
+          PRERELEASE: ${{ inputs.prerelease }}
+        run: |
+          set -euo pipefail
+          release_args=("$RELEASE_TAG" dist/* --target "$GITHUB_SHA" --title "PlayFetch $RELEASE_TAG" --generate-notes)
+          if [ "$PRERELEASE" = "true" ]; then
+            release_args+=(--prerelease)
+          fi
+          gh release create "${release_args[@]}"
+
+      - name: Remove signing key
+        if: always()
+        shell: bash
+        run: rm -f "$RUNNER_TEMP/playfetch-release.jks"
