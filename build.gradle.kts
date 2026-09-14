@@ -1,7 +1,7 @@
 buildscript {
     dependencies {
         // GPlayApi 3.6.4 is built with a newer Kotlin compiler than AGP's default.
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.4.10")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.4.20")
     }
 }
 
