@@ -63,7 +63,7 @@ android {
 
 dependencies {
     implementation("androidx.activity:activity-ktx:1.13.0")
-    implementation("androidx.core:core-ktx:1.19.0")
+    implementation("androidx.core:core-ktx:1.19.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.11.0")
     implementation("com.google.android.material:material:1.14.0")
     implementation("com.auroraoss:gplayapi:3.6.4")
